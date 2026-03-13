@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeitGeist — Gedanken für unsere Zeit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F5F4F7;--white:#FFFFFF;--card:#FFFFFF;
+  --ink:#1C1524;--mid:#2D1F3A;
+  --border:#E0DBE8;--border2:#C8BFD5;
+  --accent:#7C3AED;--accent2:#6D28D9;
+  --violet:#A78BFA;--slate:#64748B;
+  --muted:#6B6478;--light:#AEA8BA;
+  --warm:#F0EEF5;--warm2:#E8E4F0;
+}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+.topbar{background:var(--mid);padding:7px 0}
+.tb-inner{max-width:1280px;margin:0 auto;padding:0 44px;display:flex;justify-content:space-between;align-items:center}
+.tb-l{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.5px;display:flex;align-items:center;gap:8px}
+.tb-pulse{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:0.3}}
+.tb-r{display:flex;gap:18px}
+.tb-r a{font-size:10px;color:rgba(255,255,255,0.3);text-decoration:none;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color 0.2s}
+.tb-r a:hover{color:var(--violet)}
+header{background:var(--white);border-bottom:1px solid var(--border)}
+.hdr{max-width:1280px;margin:0 auto;padding:0 44px}
+.hdr-top{padding:28px 0 22px;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{text-decoration:none;display:flex;flex-direction:column}
+.logo-name{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:var(--ink);letter-spacing:-2px;line-height:0.9}
+.logo-name .geist{color:var(--accent)}
+.logo-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:7px;font-weight:600}
+.hdr-right{text-align:right;padding-bottom:4px}
+.hdr-date{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.hdr-quote{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:var(--light);max-width:260px;line-height:1.5}
+.hdr-nav{padding:11px 0;display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.hdr-nav a{padding:7px 15px;color:var(--muted);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:0.3px;transition:all 0.2s;border-radius:6px}
+.hdr-nav a:hover{background:var(--warm);color:var(--ink)}
+.hdr-nav .cta{background:var(--accent);color:#fff;margin-left:auto;border-radius:6px}
+.hdr-nav .cta:hover{background:var(--accent2);color:#fff}
+/* HERO */
+.hero{background:var(--mid);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,0.12) 0%,transparent 60%)}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;min-height:480px}
+.hero-main{padding:64px 56px 64px 44px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.hm-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.hm-tag{background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:4px 12px;border-radius:4px}
+.hm-divider{flex:1;height:1px;background:rgba(255,255,255,0.07)}
+.hm-count{font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;font-weight:600}
+.hm-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:#fff;line-height:1.02;margin-bottom:16px;letter-spacing:-1px}
+.hm-title em{font-style:italic;color:var(--violet)}
+.hm-excerpt{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.45);font-weight:300;max-width:500px;margin-bottom:28px}
+.hm-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 24px;text-decoration:none;font-size:12px;font-weight:700;border-radius:8px;transition:all 0.2s}
+.btn-p:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:12px 20px;text-decoration:none;font-size:12px;font-weight:600;border-radius:8px;transition:all 0.2s}
+.btn-s:hover{background:rgba(255,255,255,0.13);color:#fff}
+.hm-meta{margin-top:22px;display:flex;align-items:center;gap:12px;font-size:12px;color:rgba(255,255,255,0.25)}
+.hm-meta strong{color:rgba(255,255,255,0.65);font-weight:600}
+.hm-av{width:30px;height:30px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:12px;color:#fff;font-weight:700;flex-shrink:0}
+/* SIDE LIST */
+.hero-side{border-left:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column}
+.hs-head{padding:16px 26px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.hs-head-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.2);font-weight:700}
+.hs-item{padding:20px 26px;border-bottom:1px solid rgba(255,255,255,0.04);flex:1;cursor:pointer;transition:background 0.2s;position:relative}
+.hs-item:last-child{border-bottom:none}
+.hs-item:hover{background:rgba(255,255,255,0.03)}
+.hs-item::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:2px;background:var(--accent);transform:scaleY(0);transition:transform 0.2s;transform-origin:center}
+.hs-item:hover::before{transform:scaleY(1)}
+.hsi-n{font-size:11px;font-weight:700;color:rgba(255,255,255,0.08);letter-spacing:1px;margin-bottom:5px}
+.hsi-c{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--violet);margin-bottom:6px}
+.hsi-t{font-family:'Playfair Display',serif;font-size:18px;color:rgba(255,255,255,0.75);line-height:1.25;margin-bottom:4px}
+.hsi-m{font-size:11px;color:rgba(255,255,255,0.2);font-weight:500}
+/* MAIN CONTENT */
+.content{max-width:1280px;margin:48px auto;padding:0 44px;display:grid;grid-template-columns:1fr 284px;gap:36px}
+.sec-hd{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.sec-gem{width:8px;height:8px;background:var(--accent);transform:rotate(45deg);flex-shrink:0}
+.sec-t{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.sec-ln{flex:1;height:1px;background:var(--border)}
+.sec-ct{font-size:11px;color:var(--muted);font-weight:600}
+/* CARDS */
+.post-card{display:grid;grid-template-columns:210px 1fr;background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;cursor:pointer;overflow:hidden;transition:all 0.3s;position:relative}
+.post-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:10px 0 0 10px;transform:scaleY(0);transition:transform 0.25s;transform-origin:center}
+.post-card:hover::before{transform:scaleY(1)}
+.post-card:hover{box-shadow:0 10px 36px rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)}
+.post-card:hover .pc-bg{transform:scale(1.06)}
+.pc-img-wrap{position:relative;overflow:hidden;min-height:145px}
+.pc-bg{width:100%;height:100%;position:absolute;inset:0;transition:transform 0.5s}
+.pc-badge{position:absolute;bottom:10px;left:10px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px}
+.pc-n{position:absolute;top:10px;right:10px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:rgba(255,255,255,0.08);line-height:1;font-style:italic}
+.pc-body{padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between}
+.pc-meta{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.pc-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+.pc-sep{width:3px;height:3px;border-radius:50%;background:var(--light)}
+.pc-date{font-size:11px;color:var(--muted)}
+.pc-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:8px;transition:color 0.2s}
+.post-card:hover .pc-title{color:var(--accent)}
+.pc-exc{font-size:13px;line-height:1.65;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;font-weight:300}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border)}
+.pc-auth{font-size:12px;font-weight:600;color:var(--mid)}
+.pc-rd{font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;transition:gap 0.2s}
+.post-card:hover .pc-rd{gap:9px}
+.empty-state{text-align:center;padding:80px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.empty-state h3{font-family:'Playfair Display',serif;font-size:32px;color:var(--ink);margin-bottom:8px}
+.empty-state p{color:var(--muted);font-size:14px}
+.bg1{background:linear-gradient(135deg,#1C1524,#2D1F3A)}.bg2{background:linear-gradient(135deg,#4C1D95,#2E1065)}.bg3{background:linear-gradient(135deg,#1E3A5F,#0F2040)}.bg4{background:linear-gradient(135deg,#1A3A2A,#0A2015)}.bg5{background:linear-gradient(135deg,#3A1A00,#200A00)}.bg6{background:linear-gradient(135deg,#3A1A3A,#200A20)}.bg7{background:linear-gradient(135deg,#1A2A3A,#0A1520)}.bg8{background:linear-gradient(135deg,#2A1A1A,#150A0A)}
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.widget{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.w-head{padding:12px 18px;border-bottom:1px solid var(--border);background:var(--warm);display:flex;align-items:center;gap:8px}
+.w-gem{width:7px;height:7px;background:var(--accent);transform:rotate(45deg);flex-shrink:0}
+.w-title{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink)}
+.w-body{padding:14px 18px}
+.wi{padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:padding 0.15s}
+.wi:last-child{border-bottom:none;padding-bottom:0}.wi:first-child{padding-top:0}
+.wi:hover{padding-left:5px}
+.wi-cat{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.wi-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--ink);line-height:1.25;text-decoration:none;display:block;font-weight:500}
+.wi-title:hover{color:var(--accent)}
+.wi-meta{font-size:11px;color:var(--light);margin-top:2px}
+.manifesto{background:linear-gradient(135deg,var(--mid),#3D1F54);padding:26px;border-radius:10px;text-align:center}
+.mf-icon{font-size:26px;margin-bottom:10px}
+.mf-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+.mf-name .g{color:var(--violet)}
+.mf-text{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.65;font-weight:300}
+.cat-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.cat-chip{background:var(--warm2);border:1px solid var(--border2);color:var(--muted);font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;text-decoration:none;transition:all 0.2s}
+.cat-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+footer{background:var(--mid);margin-top:52px}
+.footer-inner{max-width:1280px;margin:0 auto;padding:48px 44px;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:12px}
+.footer-logo .g{color:var(--violet)}
+.footer-brand p{font-size:13px;line-height:1.8;color:rgba(255,255,255,0.3);font-weight:300}
+.footer-col h4{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px}
+.footer-col a{display:block;color:rgba(255,255,255,0.35);text-decoration:none;font-size:13px;margin-bottom:8px;font-weight:300;transition:color 0.2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);max-width:1280px;margin:0 auto;padding:16px 44px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.2)}
+.footer-bottom a{color:rgba(255,255,255,0.2);text-decoration:none;margin-left:14px;transition:color 0.2s}
+.footer-bottom a:hover{color:#fff}
+.admin-link{position:fixed;bottom:22px;right:22px;background:var(--mid);color:var(--violet);padding:10px 20px;font-size:10px;text-decoration:none;opacity:0;transition:opacity 0.3s;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:8px;border:1px solid rgba(124,58,237,0.2)}
+body:hover .admin-link{opacity:0.5}
+.admin-link:hover{opacity:1!important;background:var(--accent);color:#fff}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="tb-inner">
+  <div class="tb-l"><div class="tb-pulse"></div>ZeitGeist — Gedanken für unsere Zeit</div>
+  <div class="tb-r"><a href="#">Newsletter</a><a href="#">Archiv</a><a href="#">Impressum</a></div>
+</div></div>
+<header><div class="hdr">
+  <div class="hdr-top">
+    <a href="index.html" class="logo">
+      <div class="logo-name">Zeit<span class="geist">Geist</span></div>
+      <div class="logo-sub">Politik · Kultur · Gesellschaft · Wissen · Leben</div>
+    </a>
+    <div class="hdr-right">
+      <div class="hdr-date" id="hdr-date"></div>
+      <div class="hdr-quote">„Nicht Kunst und Wissenschaft allein, Geduld will bei dem Werke sein." — Goethe</div>
+    </div>
+  </div>
+  <div class="hdr-nav">
+    <a href="index.html">Alle</a><a href="index.html">Politik</a><a href="index.html">Wirtschaft</a>
+    <a href="index.html">Gesellschaft</a><a href="index.html">Kultur</a><a href="index.html">Technik</a>
+    <a href="index.html">Wissen</a><a href="index.html">Lifestyle</a><a href="index.html">Sport</a>
+    <a href="index.html" class="cta">Newsletter →</a>
+  </div>
+</div></header>
+
+<div id="hero-section" class="hero" style="display:none">
+  <div class="hero-inner">
+    <div class="hero-main" id="hero-main"></div>
+    <div class="hero-side">
+      <div class="hs-head"><div class="hs-head-title">Weitere Beiträge</div></div>
+      <div id="hs-items"></div>
+    </div>
+  </div>
+</div>
+<div id="hero-empty" style="display:none;background:var(--mid);padding:72px 44px;text-align:center">
+  <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:rgba(255,255,255,0.05);font-style:italic">ZeitGeist</div>
+  <p style="color:rgba(255,255,255,0.2);font-size:13px;margin-top:8px">Noch keine Artikel — erstelle deinen ersten im Admin-Bereich.</p>
+</div>
+
+<div class="content">
+  <div>
+    <div class="sec-hd"><div class="sec-gem"></div><div class="sec-t">Aktuelle Beiträge</div><div class="sec-ln"></div><div class="sec-ct" id="sec-ct">0 Beiträge</div></div>
+    <div id="posts-list"><div class="empty-state"><h3>Noch keine Artikel</h3><p>Erstelle deinen ersten Beitrag im Admin-Bereich.</p></div></div>
+  </div>
+  <aside class="sidebar">
+    <div class="manifesto"><div class="mf-icon">✦</div><div class="mf-name">Zeit<span class="g">Geist</span></div><div class="mf-text">Gedanken für unsere Zeit — deutsches Blog für Politik, Kultur, Gesellschaft, Wissen und Leben.</div></div>
+    <div class="widget"><div class="w-head"><div class="w-gem"></div><div class="w-title">Neueste Beiträge</div></div><div class="w-body"><div id="sidebar-recent"></div></div></div>
+    <div class="widget"><div class="w-head"><div class="w-gem"></div><div class="w-title">Kategorien</div></div><div class="w-body"><div class="cat-wrap">
+      <a href="index.html" class="cat-chip">Politik</a><a href="index.html" class="cat-chip">Wirtschaft</a>
+      <a href="index.html" class="cat-chip">Gesellschaft</a><a href="index.html" class="cat-chip">Kultur</a>
+      <a href="index.html" class="cat-chip">Technik</a><a href="index.html" class="cat-chip">Wissen</a>
+      <a href="index.html" class="cat-chip">Lifestyle</a><a href="index.html" class="cat-chip">Sport</a>
+      <a href="index.html" class="cat-chip">Reise</a><a href="index.html" class="cat-chip">Gesundheit</a>
+    </div></div></div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="footer-logo">Zeit<span class="g">Geist</span></div><p>ZeitGeist — Das deutschsprachige Blog für unsere Zeit. Täglich neue Gedanken und Beiträge zu Politik, Kultur, Gesellschaft, Technik, Wissen und mehr.</p></div>
+    <div class="footer-col"><h4>Themen</h4><a href="#">Politik</a><a href="#">Wirtschaft</a><a href="#">Gesellschaft</a><a href="#">Kultur</a><a href="#">Technik</a></div>
+    <div class="footer-col"><h4>Service</h4><a href="#">Newsletter</a><a href="#">Archiv</a><a href="#">RSS</a></div>
+    <div class="footer-col"><h4>Info</h4><a href="#">Über uns</a><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 ZeitGeist — Alle Rechte vorbehalten</span><div><a href="#">Impressum</a><a href="#">Datenschutz</a></div></div>
+</footer>
+<a href="admin.html" class="admin-link">⚙ Admin</a>
+
+<script>
+// Constants
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96';
+const SITE_NAME = 'zeitgeist';
+const RAW_URL = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+
+// Date formatting
+const d = new Date();
+const days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+document.getElementById('hdr-date').textContent = days[d.getDay()] + ', ' + d.getDate() + '. ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+const bgs = ['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8'];
+
+async function loadPosts() {
+  try {
+    const response = await fetch(RAW_URL);
+    const allPosts = await response.json();
+    
+    // Filter posts by site name
+    const posts = Array.isArray(allPosts) 
+      ? allPosts.filter(p => p.site === SITE_NAME).reverse()
+      : [];
+    
+    document.getElementById('sec-ct').textContent = posts.length + ' Beiträge';
+    
+    if (!posts.length) {
+      document.getElementById('hero-empty').style.display = 'block';
+      document.getElementById('hero-section').style.display = 'none';
+      document.getElementById('posts-list').innerHTML = '<div class="empty-state"><h3>Noch keine Artikel</h3><p>Erstelle deinen ersten Beitrag im Admin-Bereich.</p></div>';
+      return;
+    }
+    
+    document.getElementById('hero-section').style.display = 'block';
+    document.getElementById('hero-empty').style.display = 'none';
+    
+    // Hero section (latest post)
+    const p = posts[0];
+    const fd = new Date(p.date).toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'});
+    const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 155) + '...';
+    
+    document.getElementById('hero-main').innerHTML = `
+      <div class="hm-eyebrow">
+        <span class="hm-tag">${p.category || 'Allgemein'}</span>
+        <div class="hm-divider"></div>
+        <span class="hm-count">Hauptartikel</span>
+      </div>
+      <div class="hm-title">${p.title}</div>
+      <div class="hm-excerpt">${exc}</div>
+      <div class="hm-actions">
+        <a class="btn-p" href="post.html?id=${p.id}">Artikel lesen →</a>
+        <a class="btn-s" href="index.html">Alle Beiträge</a>
+      </div>
+      <div class="hm-meta">
+        <div class="hm-av">${(p.author || 'R').charAt(0)}</div>
+        <strong>${p.author || 'Redaktion'}</strong>
+        <span>·</span>
+        <span>${fd}</span>
+      </div>`;
+    
+    // Hero side items (next 3 posts)
+    const hsi = document.getElementById('hs-items');
+    hsi.innerHTML = '';
+    posts.slice(1, 4).forEach((p, i) => {
+      hsi.innerHTML += `<div class="hs-item" onclick="location.href='post.html?id=${p.id}'">
+        <div class="hsi-n">0${i+2}</div>
+        <div class="hsi-c">${p.category || 'Allgemein'}</div>
+        <div class="hsi-t">${p.title}</div>
+        <div class="hsi-m">${p.author || 'Redaktion'} · ${new Date(p.date).toLocaleDateString('de-DE')}</div>
+      </div>`;
+    });
+    
+    // Main posts list
+    const pl = document.getElementById('posts-list');
+    pl.innerHTML = '';
+    posts.forEach((p, i) => {
+      const date = new Date(p.date).toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'});
+      const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 105) + '...';
+      pl.innerHTML += `<div class="post-card" onclick="location.href='post.html?id=${p.id}'">
+        <div class="pc-img-wrap">
+          <div class="pc-bg ${bgs[i % bgs.length]}"></div>
+          <div class="pc-badge">${p.category || 'Allgemein'}</div>
+          <div class="pc-n">${String(i+1).padStart(2,'0')}</div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-meta">
+              <span class="pc-cat">${p.category || 'Allgemein'}</span>
+              <div class="pc-sep"></div>
+              <span class="pc-date">${date}</span>
+            </div>
+            <div class="pc-title">${p.title}</div>
+            <div class="pc-exc">${exc}</div>
+          </div>
+          <div class="pc-foot">
+            <span class="pc-auth">${p.author || 'Redaktion'}</span>
+            <a class="pc-rd" href="post.html?id=${p.id}">Lesen →</a>
+          </div>
+        </div>
+      </div>`;
+    });
+    
+    // Sidebar recent posts
+    const sr = document.getElementById('sidebar-recent');
+    sr.innerHTML = '';
+    posts.slice(0, 5).forEach(p => {
+      sr.innerHTML += `<div class="wi" onclick="location.href='post.html?id=${p.id}'">
+        <div class="wi-cat">${p.category || 'Allgemein'}</div>
+        <a class="wi-title" href="post.html?id=${p.id}">${p.title}</a>
+        <div class="wi-meta">${p.author || 'Redaktion'} · ${new Date(p.date).toLocaleDateString('de-DE')}</div>
+      </div>`;
+    });
+    
+  } catch (e) {
+    console.error('Error loading posts:', e);
+    document.getElementById('hero-empty').style.display = 'block';
+    document.getElementById('hero-section').style.display = 'none';
+  }
+}
+
+// Load posts on page load
+loadPosts();
+
+// Auto-refresh every 30 seconds
+setInterval(loadPosts, 30000);
+</script>
+</body>
+</html>
